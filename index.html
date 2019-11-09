@@ -8,17 +8,106 @@
   <meta name="description" content="put your site description here">
   <meta name="author" content="David Nunez">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
 
   <style>
     section.hero {
-      /* background-color: #F5F6F8; */
-      height: 619px;
-      background: no-repeat url("img/beta-hero.png") #F5F6F8 right;
-      background-position: 100% 70%;
+      min-height: 619px;
+      background: no-repeat url("https://www.web.com/content/dam/webdotcom/beta/beta-hero.png") #F5F6F8 right;
+      background-size: contain;
       padding: 60px 0 85px;
+      font-family: 'Open Sans', Helvetica, sans-serif;
     }
     h1 {
-      color: pink;
+      color: #0039A8;
+      font-weight: 300;
+      font-size: 30px;
+      line-height: 41px;
+      margin-bottom: 40px;
+    }
+    p.list {
+      color: #0039A8;
+      font-size: 21px;
+      line-height: 29px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    img {
+      margin-right: 10px;
+    }
+    p.disclaimer {
+      color: #424242;
+      font-size: 14px;
+      line-height: 19px;
+    }
+    form {
+      margin: 40px 0 30px;
+    }
+    form.form-inline input.form-control {
+      width: 291px;
+      height: 48px;
+      border: 1px solid #0039A8;
+      box-sizing: border-box;
+      border-radius: 4px;
+      margin-right: 12px;
+      display: inline;
+    }
+    form.form-inline button {
+      background-color: #981C67;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+      letter-spacing: 1.25px;
+      text-transform: uppercase;
+      height: 48px;
+      width: 160px;
+      border: 1px solid #981C67;
+      color: #ffffff;
+    }
+    form.form-inline button:hover {
+      background-color: #c32484;
+      border: 1px solid #c32484;
+      transition-duration: .25s;
+    }
+    p.error {
+      color: #dc3545;
+      /* margin-top: -10px; */
+      display: none;
+      font-size: 12px;
+    }
+    p.error-message {
+      display: block;
+      position: absolute;
+      bottom: 45px;
+    }
+    form.form-inline input.error-message {
+      border: 1px solid #dc3545 !important;
+    }
+    @media screen and (max-width: 991px) {
+      .col-sm-12 .btn {
+        width: inherit;
+      }
+    }
+    @media screen and (max-width: 414px) {
+      section.hero{
+        background: no-repeat url("https://www.web.com/content/dam/webdotcom/beta/beta-hero-mobile.png")right; 
+        padding: 40px 0;
+      }
+      br {
+        display: none;
+      }
+      .col-sm-12 .btn {
+        width: 100%;
+      }
+      form.form-inline input.form-control { 
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
+      form.form-inline button {
+        width: 100%;
+      }
     }
   </style>
   <!-- HTML5 Shiv, this allows older versions of ie9 to accept html5. Must live in the header, below any stylesheets -->
@@ -32,23 +121,54 @@
   <section class="hero">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-9 col-sm-12">
           <h1>
-            Earn cash, products, or other rewards just for playing with our products.
+            Earn cash, products, or other <br>
+            rewards just for playing with <br>
+            our products.
           </h1>
-          <p>
+          <p class="list">
+            <img src="https://www.web.com/content/dam/webdotcom/beta/icon1.png">
             Just sign up on this page
           </p>
-          <p>
+          <p class="list">
+            <img src="https://www.web.com/content/dam/webdotcom/beta/icon2.png">
             Give us feedback on our products
           </p>
-          <p>
+          <p class="list">
+            <img src="https://www.web.com/content/dam/webdotcom/beta/icon3.png">
             Receive your reward
+          </p>
+          <form class="form-inline" method="post" name="form" action="https://getstarted.web.com/beta/email.php">
+            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email here">
+            <button type="submit" class="btn btn-primary" onclick="return validateEmail(document.form.email)" >SIGN-UP</button>
+          </form>
+          <p class="error" id="error">
+            You have entered an invalid email address
+          </p>
+          <p class="disclaimer">
+            By submitting your information you provide written consent to<br> Web.com and its affiliates contacting you.
           </p>
         </div>
       </div>
     </div>
   </section>
+  <script>
+    function validateEmail(inputText) {
+      var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if(inputText.value.match(mailFormat)) {
+        // document.form.email.focus();
+        return true;
+      } else {
+        var errorMessage = document.getElementById("error");
+        var errorInput = document.getElementById("email");
+        errorMessage.className += " error-message";
+        errorInput.className += " error-message";
+        // document.form.email.focus();
+        return false;
+      }
+    }
+  </script>
 
 </body>
 </html> 
