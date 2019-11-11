@@ -72,7 +72,6 @@
     }
     p.error {
       color: #dc3545;
-      /* margin-top: -10px; */
       display: none;
       font-size: 12px;
     }
@@ -89,9 +88,14 @@
         width: inherit;
       }
     }
+    @media screen and (max-width: 768px) {
+      section.hero {
+        background-position: 250px;
+      }
+    }
     @media screen and (max-width: 414px) {
       section.hero{
-        background: no-repeat url("https://www.web.com/content/dam/webdotcom/beta/beta-hero-mobile.png")right; 
+        background: no-repeat url("https://www.web.com/content/dam/webdotcom/beta/beta-hero-mobile.png") right; 
         padding: 40px 0;
       }
       br {
